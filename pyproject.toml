@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lama-depth-stack-octa"
+version = "0.1.0"
+description = "Frozen 2D LaMa inference reoriented for volumetric OCTA restoration."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = [
+  "numpy>=1.24,<3",
+  "Pillow>=9.5",
+  "tifffile>=2023.7.10",
+]
+
+[project.optional-dependencies]
+lama = [
+  "simple-lama-inpainting==0.1.2",
+]
+evaluation = [
+  "scipy>=1.10",
+  "lpips>=0.1.4",
+]
+diagnostics = [
+  "matplotlib>=3.7",
+  "scipy>=1.10",
+]
+baselines = [
+  "torch>=2.0",
+]
+
+[project.scripts]
+lama-depth-stack = "lama_depth_stack.cli:main"
+
+[project.urls]
+Repository = "https://github.com/MedICL-VU/LaMa-depth-stack-OCTA"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lama_depth_stack"]
